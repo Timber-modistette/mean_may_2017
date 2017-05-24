@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app=''>
+	<head>
+		<title>more</title>
+		<meta charset="utf-8">
+		<script src='../bower_components/angular/angular.js'></script>
+	</head>
+	<body>
+		<div ng-init="students=['mike','john','trey','india']">
+			<ul>
+				<li ng-repeat="x in students">{{x}}</li>
+			</ul>
+			
+		</div>
+		<div ng-init="coworkers = [{name:'mike',age:23},{name:'piff', age: 26},{name:'monic',age:31}]">
+			<ul>
+				<li ng-repeat="y in coworkers">{{y.name}}, {{y.age}}</li>
+			</ul>
+		</div>
+	</body>
+</html>

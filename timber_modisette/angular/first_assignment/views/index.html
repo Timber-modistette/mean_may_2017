@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<title>Data Binding</title>
+		<meta charset="utf-8">
+		<script src="../bower_components/angular/angular.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('app',[]);
+			app.controller('divController', ['$scope', function($scope){
+				$scope.myName = 'Timber';
+				$scope.myFavouriteLanguage = 'Python';
+				$scope.myFavouriteJSLibrary = 'idk';
+				console.log($scope.myName)
+				
+			}]);
+		</script>
+	</head>
+	<body>
+		<h1>test</h1>
+		 <div ng-controller = "divController" id = "divController">
+      		
+      		<p>{{myName}}</p>
+      		<p>{{myFavouriteLanguage}}</p>
+      		<p>{{myFavouriteJSLibrary}}</p>
+    	</div>
+
+	</body>
+</html>

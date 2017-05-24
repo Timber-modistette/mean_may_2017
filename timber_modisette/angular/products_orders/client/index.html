@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+	<head>
+		<title>Products and orders</title>
+		<meta charset="utf-8">
+		<script src="angular/angular.js"></script>
+		<script src="angular/app.js"></script>
+
+	</head>
+	<body>
+		<div class="container">
+			<p>hello world</p>
+			<div ng-controller="ProductsController">
+				<h1>products</h1>
+				<form ng-submit="createProduct(newProduct)">
+					<label>Product Name: <input type="text" ng-model="newProduct.name"></label>
+					$<label>Product Price: <input type="number" min="0" ng-model="newProduct.price"></label>
+					<input type="submit" name="create Product">
+				</form>
+				<table ng-init="getProducts()">
+					<tr>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Actions</th>
+					</tr>
+					<tr ng-repeat='product in products'>
+						<td>{{product.name}}</td>
+						<td>{{product.price|currency:"$" }}</td>
+						<td><button ng-click="deleteProduct(product)">Delete</button></td>
+					</tr>
+				</table>
+			</div>
+			<div ng-controller="OrdersController">
+				<h1>Orders</h1>
+				<h5>{{error}}</h5>
+				<table ng-init='getProducts()'>
+					<tr>
+						<th>Name</th>
+						<th>Price</th>
+						<th>action</th>
+					</tr>
+					<tr ng-repeat='product in products'>
+						<td>{{product.name}}</td>
+						<td>{{product.price}}</td>
+						<td>{{product.quanity}}</td>
+						<td><button ng-click="buyProduct(product)">Buy</button></td>
+					</tr>
+				</table>
+				
+			</div>
+		</div>
+	</body>
+</html>

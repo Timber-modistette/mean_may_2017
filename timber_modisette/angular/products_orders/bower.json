@@ -1,0 +1,17 @@
+{
+  "name": "products_orders",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "timber <mister.modistette@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/timber-modistette/Coding-Dojo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

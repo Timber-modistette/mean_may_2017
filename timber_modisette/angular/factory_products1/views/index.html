@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+	<head>
+		<title>My factory products</title>
+		<meta charset="utf-8">
+		<script src="../bower_components/angular/angular.js"></script>
+		<script type="text/javascript">
+
+			var app = angular.module('app', []); ///creating module and calling it app
+			//////////FACTORY
+			app.factory('productFactory', function(){//creating factory, connecting to module
+				var factory = {};
+				var products = [
+					{name:'cheese',price: 20}
+				];
+
+				factory.index = function(callback){
+				    callback(products);
+				}
+				factory.create = function(product,callback){
+					products.push(product);
+					callback(products);
+					console.log('product',product)
+				}
+				factory.delete = function(id,callback){
+					products.splice(id,1);
+					callback(products);
+				}
+				return factory;
+			});
+			//////CONTROLLER
+			app.controller('productController', function($scope,productFactory){
+				$scope.product = {};
+				$scope.products = {};
+
+
+				function setProducts(data){
+					$scope.products = data;
+					$scope.product = {};
+					console.log('data',data);
+				}
+
+				$scope.index = function(){
+				    productFactory.index(setProducts);
+				}
+
+				$scope.create = function(){
+					productFactory.create($scope.product, setProducts);
+				}
+
+				$scope.delete = function(id){
+					productFactory.delete(id, setProducts);
+				}
+			});
+		</script>
+	</head>
+	<body ng-controller='productController'>
+		<div>
+			<form ng-submit='create()'>
+				<label for="name">Name: <input type="text" ng-model='product.name'></label>
+				<label for="price">Price: <input type="number" ng-model='product.price'></label>
+				<input type="submit" value="Add Product">
+			</form>
+			<table ng-init='index()'>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Index</th>
+					<th>Action</th>
+				</tr>
+				<tr ng-repeat='x in products'>
+					<td>{{x.name}}</td>
+					<td>${{x.price}}</td>
+					<td>{{$index}}</td>
+					<td><button ng-click="delete($index)">Delete Product</button></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
